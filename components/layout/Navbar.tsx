@@ -23,6 +23,8 @@ const Navbar = () => {
     { name: "About Pastor", href: "/about" },
     { name: "SATGO Office", href: "/satgo" },
     { name: "Blog/Devotional", href: "/blog" },
+    { name: "Events", href: "/events" },
+    { name: "Live", href: "/live" },
     { name: "Books", href: "/books" },
     { name: "Contact", href: "/contact" },
   ];

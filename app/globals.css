@@ -2,15 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Normal/Default Theme */
 :root {
   --primary: #0c0c69;
+  --primary-dark: #080852;
+  --primary-light: #10108a;
   --secondary: #fcba03;
+  --secondary-dark: #ca9502;
+  --secondary-light: #fdc835;
   --text: #ffffff;
+  --text-muted: #e0e0e0;
+  --text-dark: #1a1a1a;
+  --bg: #0c0c69;
+  --bg-dark: #080852;
+  --bg-light: #10108a;
+}
+
+/* Light Mode */
+[data-theme="light"] {
+  --primary: #0c0c69;
+  --primary-dark: #080852;
+  --primary-light: #e8e8f5;
+  --secondary: #d19a00;
+  --secondary-dark: #a87b00;
+  --secondary-light: #f0c040;
+  --text: #0a0a50;
+  --text-muted: #5a5a80;
+  --text-dark: #0a0a50;
+  --bg: #ffffff;
+  --bg-dark: #f5f5fa;
+  --bg-light: #fafafe;
+  --border: #d8d8e6;
+  --button-text: #ffffff;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --primary: #fcba03;
+  --primary-dark: #14145a;
+  --primary-light: #1a1a70;
+  --secondary: #d19a00;
+  --secondary-dark: #a87b00;
+  --secondary-light: #f0c040;
+  --text: #ffffff;
+  --text-muted: #e4e4f0;
+  --text-dark: #ffffff;
+  --bg: #0b0b3e;
+  --bg-dark: #080832;
+  --bg-light: #14145a;
+  --surface: #14145a;
+  --button-text: #0b0b3e;
 }
 
 @layer base {
   body {
-    @apply bg-primary text-text antialiased;
+    background-color: var(--bg);
+    color: var(--text);
+    @apply antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -36,15 +84,29 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-secondary hover:bg-secondary-dark text-primary font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    background-color: var(--secondary);
+    color: var(--button-text, var(--primary));
+    @apply font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--secondary-dark);
   }
 
   .btn-secondary {
-    @apply bg-primary-light hover:bg-primary text-text font-bold py-3 px-6 rounded-lg transition-all duration-300 border-2 border-secondary;
+    background-color: var(--primary-light);
+    color: var(--text);
+    border: 2px solid var(--secondary);
+    @apply font-bold py-3 px-6 rounded-lg transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--primary);
   }
 
   .card {
-    @apply bg-primary-light rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl;
+    background-color: var(--bg-light);
+    @apply rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl;
   }
 
   .section-container {
@@ -52,7 +114,16 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-secondary to-secondary-light bg-clip-text text-transparent;
+    background: linear-gradient(to right, var(--secondary), var(--secondary-light));
+    @apply bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
   }
 }
 
@@ -100,6 +171,32 @@
     }
     100% {
       transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  .animate-pop {
+    animation: pop 2s ease-in-out infinite;
+  }
+
+  @keyframes pop {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px var(--secondary);
+    }
+    50% {
+      box-shadow: 0 0 40px var(--secondary), 0 0 60px var(--secondary);
     }
   }
 }

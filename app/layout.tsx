@@ -3,6 +3,8 @@ import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ThemeProvider } from "@/lib/ThemeContext";
+import MeetPSOButton from "@/components/ui/MeetPSOButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,13 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${merriweather.variable}`}>
+    <html lang="en" className={`${inter.variable} ${merriweather.variable}`} suppressHydrationWarning>
       <body>
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+          <MeetPSOButton />
+        </ThemeProvider>
       </body>
     </html>
   );
