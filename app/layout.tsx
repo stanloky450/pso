@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/ThemeContext";
+import { AuthProvider } from "@/lib/AuthContext";
 import MeetPSOButton from "@/components/ui/MeetPSOButton";
 
 const inter = Inter({
@@ -32,12 +33,14 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${merriweather.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <MeetPSOButton />
+          <AuthProvider>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <MeetPSOButton />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
