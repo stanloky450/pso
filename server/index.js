@@ -12,6 +12,8 @@ const commentsRoutes = require('./routes/comments');
 const newsletterRoutes = require('./routes/newsletter');
 const eventsRoutes = require('./routes/events');
 const uploadRoutes = require('./routes/upload');
+const usersRoutes = require('./routes/users');
+const analyticsRoutes = require('./routes/analytics');
 
 dotenv.config();
 
@@ -37,6 +39,8 @@ app.use('/api/comments', commentsRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/events', eventsRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -23,21 +23,16 @@ export default function AdminDashboard() {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem("token");
-      // Fetch stats from API
-      // This is a placeholder - implement actual API calls
-      setStats({
-        posts: 0,
-        messages: 0,
-        users: 0,
-        subscribers: 0,
-      });
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/analytics/dashboard`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setStats(data);
     } catch (error) {
       console.error("Error fetching stats:", error);
     }
   };
 
-  return (
-    <ProtectedRoute>
   const adminCards = [
     {
       title: "Analytics",
