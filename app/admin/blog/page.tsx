@@ -301,7 +301,9 @@ export default function BlogManagement() {
 									>
 										Featured Image
 									</label>
-									<ImageUpload onUploadSuccess={handleImageUpload} />
+									<ImageUpload
+										{...({ onUploadSuccess: handleImageUpload } as any)}
+									/>
 									{formData.image && (
 										<div className="mt-4">
 											<img
