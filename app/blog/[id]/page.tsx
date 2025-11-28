@@ -1,14 +1,16 @@
+"use client";
+
 import CommentsSection from "@/components/blog/CommentsSection";
 import SocialShare from "@/components/ui/SocialShare";
 import NewsletterSubscription from "@/components/ui/NewsletterSubscription";
 
 // This would be dynamic in production - fetching from API
 export default function BlogPost({ params }: { params: { id: string } }) {
-  // Mock data - replace with actual API call
-  const post = {
-    id: params.id,
-    title: "Walking in Purpose: Discovering God's Plan for Your Life",
-    content: `
+	// Mock data - replace with actual API call
+	const post = {
+		id: params.id,
+		title: "Walking in Purpose: Discovering God's Plan for Your Life",
+		content: `
       <p>God has a unique plan and purpose for each of us. From the beginning of time, He has designed you with specific gifts, talents, and a divine calling that only you can fulfill.</p>
 
       <p>In Jeremiah 29:11, we read: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."</p>
@@ -28,85 +30,89 @@ export default function BlogPost({ params }: { params: { id: string } }) {
 
       <p>Remember, your purpose is not just about you—it's about the impact you're called to make in the lives of others. As you discover and walk in your God-given purpose, you will experience fulfillment, joy, and the satisfaction of living the life you were created for.</p>
     `,
-    category: "Devotional",
-    date: "2025-11-25",
-    readTime: "5 min read",
-    author: "Pastor Sola Olukoya",
-  };
+		category: "Devotional",
+		date: "2025-11-25",
+		readTime: "5 min read",
+		author: "Pastor Sola Olukoya",
+	};
 
-  return (
-    <div className="pt-20" style={{ backgroundColor: "var(--bg-dark)" }}>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Post Header */}
-        <header className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="text-xs font-semibold px-3 py-1 rounded-full"
-              style={{
-                backgroundColor: "var(--secondary)",
-                color: "var(--primary)",
-              }}
-            >
-              {post.category}
-            </span>
-            <span style={{ color: "var(--text-muted)" }}>{post.readTime}</span>
-          </div>
+	return (
+		<div className="pt-20" style={{ backgroundColor: "var(--bg-dark)" }}>
+			<article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+				{/* Post Header */}
+				<header className="mb-12">
+					<div className="flex items-center gap-3 mb-4">
+						<span
+							className="text-xs font-semibold px-3 py-1 rounded-full"
+							style={{
+								backgroundColor: "var(--secondary)",
+								color: "var(--primary)",
+							}}
+						>
+							{post.category}
+						</span>
+						<span style={{ color: "var(--text-muted)" }}>{post.readTime}</span>
+					</div>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--text)" }}>
-            {post.title}
-          </h1>
+					<h1
+						className="text-4xl md:text-5xl font-bold mb-6"
+						style={{ color: "var(--text)" }}
+					>
+						{post.title}
+					</h1>
 
-          <div className="flex items-center justify-between">
-            <div style={{ color: "var(--text-muted)" }}>
-              By <span style={{ color: "var(--secondary)" }}>{post.author}</span> •{" "}
-              {post.date}
-            </div>
-          </div>
-        </header>
+					<div className="flex items-center justify-between">
+						<div style={{ color: "var(--text-muted)" }}>
+							By{" "}
+							<span style={{ color: "var(--secondary)" }}>{post.author}</span> •{" "}
+							{post.date}
+						</div>
+					</div>
+				</header>
 
-        {/* Post Content */}
-        <div
-          className="prose prose-lg max-w-none mb-12"
-          style={{ color: "var(--text)" }}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+				{/* Post Content */}
+				<div
+					className="prose prose-lg max-w-none mb-12"
+					style={{ color: "var(--text)" }}
+					dangerouslySetInnerHTML={{ __html: post.content }}
+				/>
 
-        <style jsx>{`
-          :global(.prose h2) {
-            color: var(--secondary);
-            font-size: 2rem;
-            font-weight: bold;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-          }
-          :global(.prose h3) {
-            color: var(--secondary);
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-          }
-          :global(.prose p) {
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-          }
-        `}</style>
+				<style jsx>{`
+					:global(.prose h2) {
+						color: var(--secondary);
+						font-size: 2rem;
+						font-weight: bold;
+						margin-top: 2rem;
+						margin-bottom: 1rem;
+					}
+					:global(.prose h3) {
+						color: var(--secondary);
+						font-size: 1.5rem;
+						font-weight: bold;
+						margin-top: 1.5rem;
+						margin-bottom: 0.75rem;
+					}
+					:global(.prose p) {
+						color: var(--text);
+						margin-bottom: 1.5rem;
+						line-height: 1.8;
+					}
+				`}</style>
 
-        {/* Social Share */}
-        <SocialShare
-          url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.id}`}
-          title={post.title}
-        />
+				{/* Social Share */}
+				<SocialShare
+					url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.id}`}
+					title={post.title}
+				/>
 
-        {/* Comments */}
-        <CommentsSection postId={post.id} />
+				{/* Comments */}
+				<CommentsSection postId={post.id} />
 
-        {/* Newsletter */}
-        <div className="mt-12">
-          <NewsletterSubscription />
-        </div>
-      </article>
-    </div>
-  );
+				{/* Newsletter */}
+				<div className="mt-12">
+					<NewsletterSubscription />
+				</div>
+			</article>
+		</div>
+	);
 }
